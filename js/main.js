@@ -28,6 +28,16 @@ if (contactForm) {
   });
 }
 
+// ─── FAQ ACCORDION ───
+document.querySelectorAll('.faq-accordion-trigger').forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+    trigger.setAttribute('aria-expanded', !isOpen);
+    const body = trigger.nextElementSibling;
+    body.style.maxHeight = isOpen ? '0' : body.scrollHeight + 'px';
+  });
+});
+
 // ─── SMOOTH SCROLL (fallback for older browsers) ───
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', (e) => {
