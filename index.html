@@ -18,7 +18,7 @@
       <a href="#home" class="nav-logo">
         <div class="logo-mark">
           <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="10,3 18,17 2,17" fill="#0f2544"/>
+            <polygon points="10,3 18,17 2,17" fill="#1f3c5e"/>
           </svg>
         </div>
         Locus Tuition
@@ -252,30 +252,18 @@
   </section>
 
   <!-- ═══ BOOTCAMP ═══ -->
-  <section class="section bootcamp-section" id="bootcamp">
+  <section class="bootcamp-section" id="bootcamp" style="padding: 56px 0;">
     <div class="container">
       <div class="bootcamp-inner">
         <div class="bootcamp-text">
           <div class="bootcamp-tag">Summer 2026</div>
-          <h2>The <em>Summer Bootcamp</em><br>that changes everything</h2>
-          <p>Four intensive days, 10 hours of structured teaching, daily exam practice and a mini mock on the final day. The fastest way to close the gap before the new school year.</p>
+          <h2 style="font-size: clamp(1.5rem, 3vw, 2rem);">The <em>Summer Bootcamp</em><br>that changes everything</h2>
+          <p style="font-size: 14px;">Four intensive days, 10 hours of structured teaching, daily exam practice and a mini mock on the final day. The fastest way to close the gap before the new school year.</p>
           <div class="bootcamp-facts">
-            <div class="bootcamp-fact">
-              <strong>10 hrs</strong>
-              <span>Total teaching</span>
-            </div>
-            <div class="bootcamp-fact">
-              <strong>4 days</strong>
-              <span>Mon–Thu</span>
-            </div>
-            <div class="bootcamp-fact">
-              <strong>8 max</strong>
-              <span>Per cohort</span>
-            </div>
-            <div class="bootcamp-fact">
-              <strong>Aug 2026</strong>
-              <span>Next dates</span>
-            </div>
+            <div class="bootcamp-fact"><strong>10 hrs</strong><span>Total teaching</span></div>
+            <div class="bootcamp-fact"><strong>4 days</strong><span>Mon–Thu</span></div>
+            <div class="bootcamp-fact"><strong>8 max</strong><span>Per cohort</span></div>
+            <div class="bootcamp-fact"><strong>Aug 2026</strong><span>Next dates</span></div>
           </div>
           <a href="#contact" class="btn-primary">Reserve your spot →</a>
         </div>
@@ -426,39 +414,91 @@
         <div class="section-label">FAQs</div>
         <h2 class="section-title">Common <em>questions answered</em></h2>
       </div>
-      <div class="faq-grid">
-        <div class="faq-item">
-          <h4>What year groups do you teach?</h4>
-          <p>We teach Years 7 through to Year 11, covering both GCSE and iGCSE syllabuses including AQA, Edexcel and Cambridge iGCSE.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 48px;">
+
+        <!-- Column 1 -->
+        <div class="faq-accordion" style="margin-top: 0;">
+          <div class="faq-accordion-item">
+            <button class="faq-accordion-trigger" aria-expanded="false">
+              What year groups do you teach?
+              <svg class="faq-accordion-icon" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-content"><p>We teach Years 7 through to Year 11, covering both GCSE and iGCSE syllabuses including AQA, Edexcel and Cambridge iGCSE.</p></div>
+            </div>
+          </div>
+          <div class="faq-accordion-item">
+            <button class="faq-accordion-trigger" aria-expanded="false">
+              How does the free call work?
+              <svg class="faq-accordion-icon" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-content"><p>We start with a free 15-minute call to find out about your child's level, exam board and goals. From there we'll recommend the right format and you can get started as soon as the following week.</p></div>
+            </div>
+          </div>
+          <div class="faq-accordion-item">
+            <button class="faq-accordion-trigger" aria-expanded="false">
+              What's the difference between 1-1 and group?
+              <svg class="faq-accordion-icon" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-content"><p>1-1 sessions are fully personalised to your child's specific gaps and exam board. Group sessions follow a structured curriculum and are ideal for students who need consistent practice.</p></div>
+            </div>
+          </div>
+          <div class="faq-accordion-item">
+            <button class="faq-accordion-trigger" aria-expanded="false">
+              How do online sessions work?
+              <svg class="faq-accordion-icon" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-content"><p>Sessions run via video call with an interactive whiteboard. Your child needs a device, stable internet, and something to write on. The tutor shares their screen and students show working in real time.</p></div>
+            </div>
+          </div>
         </div>
-        <div class="faq-item">
-          <h4>How does the free call work?</h4>
-          <p>We start with a free 15-minute call to find out about your child's level, exam board and goals. From there we'll recommend the right format — 1-1, small group, or bootcamp — and you can get started as soon as the following week.</p>
+
+        <!-- Column 2 -->
+        <div class="faq-accordion" style="margin-top: 0;">
+          <div class="faq-accordion-item">
+            <button class="faq-accordion-trigger" aria-expanded="false">
+              How quickly will my child see results?
+              <svg class="faq-accordion-icon" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-content"><p>Most students notice improved understanding within the first few sessions. Visible grade improvements typically take a full term. We review progress every half term so you always know where things stand.</p></div>
+            </div>
+          </div>
+          <div class="faq-accordion-item">
+            <button class="faq-accordion-trigger" aria-expanded="false">
+              How does payment work?
+              <svg class="faq-accordion-icon" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-content"><p>Sessions are booked and paid roughly a month in advance — four sessions at a time. No fixed contract. If you decide not to continue, simply don't book the following month.</p></div>
+            </div>
+          </div>
+          <div class="faq-accordion-item">
+            <button class="faq-accordion-trigger" aria-expanded="false">
+              What about the summer bootcamp?
+              <svg class="faq-accordion-icon" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-content"><p>The bootcamp runs over 4 days, 2.5 hours each day — 10 hours total. It covers the highest-value exam topics with daily practice and a mini mock on the final day. Places are limited to 8 per cohort.</p></div>
+            </div>
+          </div>
+          <div class="faq-accordion-item">
+            <button class="faq-accordion-trigger" aria-expanded="false">
+              Do you offer A-Level tuition?
+              <svg class="faq-accordion-icon" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-content"><p>A-Level tuition is currently available on request. Get in touch and we'll discuss whether we can accommodate your child's requirements.</p></div>
+            </div>
+          </div>
         </div>
-        <div class="faq-item">
-          <h4>What's the difference between 1-1 and group?</h4>
-          <p>1-1 sessions are fully personalised to your child's specific gaps and exam board. Group sessions follow a structured curriculum and are ideal for students who are broadly on track but need consistent practice.</p>
-        </div>
-        <div class="faq-item">
-          <h4>How do online sessions work?</h4>
-          <p>We use Bitpaper — an interactive online whiteboard — alongside Zoom. It feels like a real lesson. Students can write, annotate and work through problems in real time.</p>
-        </div>
-        <div class="faq-item">
-          <h4>How quickly will my child see results?</h4>
-          <p>Most students see measurable improvement within 6–8 weeks. Grade jumps of 1–2 levels over a full term are common for students who attend consistently.</p>
-        </div>
-        <div class="faq-item">
-          <h4>What about the summer bootcamp?</h4>
-          <p>The bootcamp runs over 4 days, 2.5 hours each day — 10 hours total. It covers the highest-value exam topics with daily practice and a mini mock on the final day. Places are limited to 8 per cohort.</p>
-        </div>
-        <div class="faq-item">
-          <h4>Do you offer A-Level tuition?</h4>
-          <p>A-Level tuition is currently available on request. Get in touch and we'll discuss whether we can accommodate your child's requirements.</p>
-        </div>
-        <div class="faq-item">
-          <h4>How do I pay?</h4>
-          <p>Sessions are billed monthly in advance on a 4-week rolling basis. We accept bank transfer. No long-term contract — simply let us know before your next monthly cycle if you'd like to stop.</p>
-        </div>
+
+      </div>
+      <div style="text-align: center; margin-top: 28px;">
+        <a href="faq.html" style="font-size: 14px; font-weight: 600; color: var(--forest); text-decoration: none; border-bottom: 1px solid var(--forest-pale);">See all FAQs →</a>
       </div>
     </div>
   </section>
@@ -467,6 +507,7 @@
   <section class="section contact-section" id="contact">
     <div class="container">
       <div class="contact-inner">
+
         <div class="contact-info">
           <div class="section-label">Get in Touch</div>
           <h2 class="section-title">Ready to <em>get started?</em></h2>
@@ -552,6 +593,7 @@
             <button type="submit" class="form-submit">Book a Free Call →</button>
           </form>
         </div>
+
       </div>
     </div>
   </section>
@@ -561,7 +603,7 @@
     <div class="footer-inner">
       <a href="#home" class="footer-logo">
         <div class="logo-mark logo-mark--sm">
-          <svg viewBox="0 0 20 20" fill="none"><polygon points="10,3 18,17 2,17" fill="#0f2544"/></svg>
+          <svg viewBox="0 0 20 20" fill="none"><polygon points="10,3 18,17 2,17" fill="#1f3c5e"/></svg>
         </div>
         Locus Tuition
       </a>
