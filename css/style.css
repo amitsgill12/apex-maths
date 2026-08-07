@@ -1427,6 +1427,7 @@ footer {
 
 /* ─── OFFER GRID 2-COL MODIFIER ─── */
 .offer-grid--two { grid-template-columns: repeat(2, 1fr); }
+.offer-grid--four { grid-template-columns: repeat(4, 1fr); }
 
 /* ─── BOOTCAMP NOTICE ─── */
 .bootcamp-notice {
@@ -1675,6 +1676,7 @@ footer {
   .about-not-grid { grid-template-columns: 1fr; max-width: 480px; }
   .comparison-cols { grid-template-columns: 1fr; }
   .offer-grid--two { grid-template-columns: 1fr; max-width: 480px; }
+  .offer-grid--four { grid-template-columns: repeat(2, 1fr); }
   .igcse-info-card { flex-direction: column; gap: 20px; padding: 28px; }
   .igcse-pricing { grid-template-columns: 1fr; }
   .about-stats-strip { flex-wrap: wrap; }
@@ -1695,4 +1697,5 @@ footer {
   footer { padding: 24px 20px; }
   .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
   .transform-grid { grid-template-columns: 1fr; }
+  .offer-grid--four { grid-template-columns: 1fr; }
 }
