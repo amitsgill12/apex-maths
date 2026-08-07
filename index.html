@@ -132,8 +132,9 @@
       </div>
       <div class="offer-grid offer-grid--four">
 
-        <div class="offer-card">
-          <div class="offer-icon offer-icon--gold">
+        <div class="offer-card" style="border-color: rgba(37,99,235,0.2);">
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent-blue);border-radius:var(--radius-lg) var(--radius-lg) 0 0;"></div>
+          <div class="offer-icon" style="background: rgba(37,99,235,0.1); color: var(--accent-blue); margin-top: 8px;">
             <svg viewBox="0 0 24 24" fill="none"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm-9 10a9 9 0 0 1 18 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
           <h3>1-1 Tuition</h3>
@@ -149,9 +150,9 @@
           <a href="book.html" class="offer-cta">Enquire now →</a>
         </div>
 
-        <div class="offer-card" style="background: rgba(14,138,125,0.06); border-color: rgba(14,138,125,0.2);">
-          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--teal-600);border-radius:var(--radius-lg) var(--radius-lg) 0 0;"></div>
-          <div class="offer-icon" style="background: rgba(14,138,125,0.1); color: var(--teal-600);">
+        <div class="offer-card" style="background: rgba(12,122,76,0.06); border-color: rgba(12,122,76,0.2);">
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent-emerald);border-radius:var(--radius-lg) var(--radius-lg) 0 0;"></div>
+          <div class="offer-icon" style="background: rgba(12,122,76,0.1); color: var(--accent-emerald);">
             <svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
           <h3>Standard Group</h3>
@@ -167,8 +168,7 @@
           <a href="book.html" class="offer-cta" style="border-color:rgba(14,138,125,0.3);">Enquire now →</a>
         </div>
 
-        <div class="offer-card offer-card--featured" style="background: rgba(15,37,68,0.04); border-color: rgba(15,37,68,0.2);">
-          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--navy);border-radius:var(--radius-lg) var(--radius-lg) 0 0;"></div>
+        <div class="offer-card offer-card--featured offer-card--dark">
           <div class="featured-badge">Best Value</div>
           <div class="offer-icon offer-icon--gold">
             <svg viewBox="0 0 24 24" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -186,8 +186,9 @@
           <a href="book.html" class="offer-cta offer-cta--featured">Enquire now →</a>
         </div>
 
-        <div class="offer-card">
-          <div class="offer-icon offer-icon--purple">
+        <div class="offer-card" style="border-color: rgba(124,58,237,0.2);">
+          <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent-violet);border-radius:var(--radius-lg) var(--radius-lg) 0 0;"></div>
+          <div class="offer-icon" style="background: rgba(124,58,237,0.1); color: var(--accent-violet); margin-top: 8px;">
             <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
           <h3>iGCSE Specialist</h3>
@@ -255,40 +256,81 @@
         <h2 class="section-title">Real students, <em>real grades</em></h2>
         <p class="section-sub">Don't take our word for it — here's what parents and students say after working with Locus Tuition.</p>
       </div>
-      <div class="testimonial-grid">
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"My daughter went from a Grade 3 to a Grade 6 in just one term. The sessions are structured, engaging and she actually looks forward to them now."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">SP</div>
-            <div>
-              <div class="author-name">Sarah P.</div>
-              <div class="author-detail">Parent · Year 11 student</div>
+      <div class="testimonial-carousel">
+        <button class="carousel-arrow carousel-arrow--prev" id="testimonialPrev" aria-label="Previous review">‹</button>
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"My daughter went from a Grade 3 to a Grade 6 in just one term. The sessions are structured, engaging and she actually looks forward to them now."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">SP</div>
+              <div>
+                <div class="author-name">Sarah P.</div>
+                <div class="author-detail">Parent · Year 11 student</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"I was really struggling with algebra and quadratics. After a few months with Locus I actually understand what I'm doing. Got a 7 in my mock."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">JT</div>
+              <div>
+                <div class="author-name">James T.</div>
+                <div class="author-detail">Student · Year 11 Higher</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"The group sessions are brilliant value. My son gets the same quality teaching as a 1-1 but alongside other students which keeps him motivated."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">MK</div>
+              <div>
+                <div class="author-name">Michelle K.</div>
+                <div class="author-detail">Parent · Year 10 student</div>
+              </div>
+            </div>
+          </div>
+          <!-- Placeholder — real review to replace -->
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"My son used to dread maths homework. Three months in and he's actually explaining concepts to me now. The confidence shift has been the biggest change."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">PS</div>
+              <div>
+                <div class="author-name">Priya S.</div>
+                <div class="author-detail">Parent · Year 9 student</div>
+              </div>
+            </div>
+          </div>
+          <!-- Placeholder — real review to replace -->
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"I was stuck on a grade 4 for ages. Locus helped me see exactly where I was losing marks and now I'm consistently hitting a 6 in mocks."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">DO</div>
+              <div>
+                <div class="author-name">Daniel O.</div>
+                <div class="author-detail">Student · Year 10 Foundation</div>
+              </div>
+            </div>
+          </div>
+          <!-- Placeholder — real review to replace -->
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"We started early to get ahead of GCSEs and it's been worth it. The sessions are structured but never feel like extra school."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">LB</div>
+              <div>
+                <div class="author-name">Laura B.</div>
+                <div class="author-detail">Parent · Year 8 student</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"I was really struggling with algebra and quadratics. After a few months with Locus I actually understand what I'm doing. Got a 7 in my mock."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">JT</div>
-            <div>
-              <div class="author-name">James T.</div>
-              <div class="author-detail">Student · Year 11 Higher</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"The group sessions are brilliant value. My son gets the same quality teaching as a 1-1 but alongside other students which keeps him motivated."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">MK</div>
-            <div>
-              <div class="author-name">Michelle K.</div>
-              <div class="author-detail">Parent · Year 10 student</div>
-            </div>
-          </div>
-        </div>
+        <button class="carousel-arrow carousel-arrow--next" id="testimonialNext" aria-label="Next review">›</button>
+        <div class="carousel-dots" id="testimonialDots"></div>
       </div>
       <div class="results-grid">
         <div class="result-item">

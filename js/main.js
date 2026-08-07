@@ -165,3 +165,66 @@ if (calendlyWidget && calendlyFallback) {
     }
   }, 5000);
 }
+
+// ─── TESTIMONIAL CAROUSEL ───
+const testimonialTrack = document.getElementById('testimonialTrack');
+const testimonialDots = document.getElementById('testimonialDots');
+const testimonialPrev = document.getElementById('testimonialPrev');
+const testimonialNext = document.getElementById('testimonialNext');
+
+if (testimonialTrack && testimonialDots && testimonialPrev && testimonialNext) {
+  const cards = Array.from(testimonialTrack.children);
+  let cardsPerView = 3;
+  let page = 0;
+
+  function getCardsPerView() {
+    if (window.innerWidth <= 600) return 1;
+    if (window.innerWidth <= 960) return 2;
+    return 3;
+  }
+
+  function totalPages() {
+    return Math.ceil(cards.length / cardsPerView);
+  }
+
+  function renderDots() {
+    testimonialDots.innerHTML = '';
+    for (let i = 0; i < totalPages(); i++) {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot';
+      dot.setAttribute('aria-label', `Go to reviews page ${i + 1}`);
+      if (i === page) dot.setAttribute('aria-current', 'true');
+      dot.addEventListener('click', () => {
+        page = i;
+        update();
+      });
+      testimonialDots.appendChild(dot);
+    }
+  }
+
+  function update() {
+    cardsPerView = getCardsPerView();
+    const maxPage = totalPages() - 1;
+    if (page > maxPage) page = maxPage;
+
+    // CSS translateX(%) is relative to the track's own visible border-box,
+    // not its full scrollable content — and since cardsPerView cards are
+    // sized (via flex-basis) to fill exactly 100% of that box, moving one
+    // page is always -100%, regardless of how many cards exist in total.
+    testimonialTrack.style.transform = `translateX(-${page * 100}%)`;
+
+    renderDots();
+    testimonialPrev.disabled = page === 0;
+    testimonialNext.disabled = page === maxPage;
+  }
+
+  testimonialPrev.addEventListener('click', () => {
+    if (page > 0) { page--; update(); }
+  });
+  testimonialNext.addEventListener('click', () => {
+    if (page < totalPages() - 1) { page++; update(); }
+  });
+  window.addEventListener('resize', update);
+
+  update();
+}
