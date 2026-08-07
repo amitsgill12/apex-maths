@@ -19,12 +19,82 @@ if (hamburger && mobileMenu) {
 
 // ─── CONTACT FORM ───
 const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
 
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
+if (contactForm && formStatus) {
+  const requiredFields = ['parentName', 'phone', 'email', 'yearGroup', 'consent'];
+
+  function fieldValue(field) {
+    return field.type === 'checkbox' ? field.checked : field.value.trim();
+  }
+
+  function showFieldError(field, message) {
+    const errorEl = document.getElementById(field.name + 'Error');
+    if (errorEl) errorEl.textContent = message;
+    field.setAttribute('aria-invalid', 'true');
+  }
+
+  function clearFieldError(field) {
+    const errorEl = document.getElementById(field.name + 'Error');
+    if (errorEl) errorEl.textContent = '';
+    field.removeAttribute('aria-invalid');
+  }
+
+  function validateForm() {
+    let isValid = true;
+
+    requiredFields.forEach((name) => {
+      const field = contactForm.elements[name];
+      if (!field) return;
+      if (!fieldValue(field)) {
+        showFieldError(field, field.type === 'checkbox' ? 'Please confirm you agree.' : 'This field is required.');
+        isValid = false;
+      } else {
+        clearFieldError(field);
+      }
+    });
+
+    const emailField = contactForm.elements.email;
+    const emailValue = emailField.value.trim();
+    if (emailValue && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+      showFieldError(emailField, 'Enter a valid email address.');
+      isValid = false;
+    }
+
+    return isValid;
+  }
+
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    alert("Thanks for getting in touch! We'll respond within 24 hours. For the fastest reply, message us on WhatsApp.");
-    contactForm.reset();
+    if (!validateForm()) return;
+
+    const submitBtn = contactForm.querySelector('.form-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    formStatus.className = 'form-status';
+    formStatus.textContent = '';
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { Accept: 'application/json' }
+      });
+
+      if (response.ok) {
+        formStatus.className = 'form-status form-status--success';
+        formStatus.textContent = "Thanks — we've received your enquiry and will reply within 24 hours.";
+        contactForm.reset();
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (err) {
+      formStatus.className = 'form-status form-status--error';
+      formStatus.innerHTML = 'Something went wrong sending that. Message us on <a href="https://wa.me/447908288822" target="_blank" rel="noopener">WhatsApp</a> instead.';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Enquiry →';
+    }
   });
 }
 

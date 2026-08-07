@@ -1102,6 +1102,65 @@ button { cursor: pointer; font-family: var(--font-sans); }
   background: var(--gold-light);
   transform: translateY(-1px);
 }
+.form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+/* Honeypot — visually hidden, not display:none, and removed from AT/tab order */
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Inline field errors */
+.form-error {
+  display: block;
+  min-height: 14px;
+  font-size: 12px;
+  color: #e05c4a;
+  margin-top: 2px;
+}
+.form-group input[aria-invalid="true"],
+.form-group select[aria-invalid="true"] {
+  border-color: #e05c4a;
+}
+
+/* Consent checkbox */
+.form-consent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.form-consent label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+  cursor: pointer;
+}
+.form-consent input[type="checkbox"] {
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+.form-consent a { color: var(--gold); text-decoration: underline; }
+
+/* Submission status (success / error) */
+.form-status {
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 4px;
+}
+.form-status:empty { margin-top: 0; }
+.form-status--success { color: var(--success); }
+.form-status--error { color: #e05c4a; }
+.form-status--error a { color: var(--gold); text-decoration: underline; }
 
 /* ─── FOOTER ─── */
 footer {
