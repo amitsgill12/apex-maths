@@ -122,6 +122,16 @@
            data-url="https://calendly.com/hello-locustuition/tuition-consultation"
            style="min-width:320px;height:700px;"></div>
       <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+      <!-- Shown by JS if the Calendly embed fails to load within 5 seconds -->
+      <div id="calendlyFallback" class="calendly-fallback" style="display: none; max-width: 480px; margin: 24px auto 0;">
+        <strong>The booking calendar didn't load.</strong><br>
+        This can happen if a browser extension or network blocks it. You can still reach me directly —
+        <a href="https://wa.me/447908288822" target="_blank" rel="noopener">WhatsApp</a> or
+        <a href="mailto:hello@locustuition.co.uk">email</a> and I'll get back to you within 24 hours.
+      </div>
+
+      <p style="max-width: 480px; margin: 20px auto 0; text-align: center; font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7;">Once you book, you'll get an instant confirmation email with the call details. I'll call via Zoom at the time you've chosen — no prep needed, just show up.</p>
     </div>
   </section>
 
@@ -201,6 +211,12 @@
       <p class="footer-copy">© 2026 Locus Tuition. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- ═══ MOBILE STICKY CTA ═══ -->
+  <!-- Suppressed by JS on this page (Calendly widget already handles booking) -->
+  <div class="mobile-sticky-cta" id="mobileStickyCta">
+    <a href="book.html" class="btn-primary">Book a Free Call →</a>
+  </div>
 
   <script src="js/main.js"></script>
 </body>

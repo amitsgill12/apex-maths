@@ -118,3 +118,50 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// ─── STICKY MOBILE CTA ───
+const stickyCta = document.getElementById('mobileStickyCta');
+
+if (stickyCta) {
+  if (document.querySelector('.calendly-inline-widget')) {
+    // book.html already has its own booking flow — suppress entirely
+    stickyCta.remove();
+  } else {
+    let footerVisible = false;
+    let keyboardOpen = false;
+
+    function updateStickyCta() {
+      stickyCta.classList.toggle('hidden', footerVisible || keyboardOpen);
+    }
+
+    const footerEl = document.querySelector('footer');
+    if (footerEl && 'IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        footerVisible = entries[0].isIntersecting;
+        updateStickyCta();
+      }, { threshold: 0 }).observe(footerEl);
+    }
+
+    // Mobile keyboards shrink the visual viewport, not the layout viewport —
+    // without this, the bar can float mid-screen on top of an open keyboard
+    // and cover form fields.
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', () => {
+        keyboardOpen = window.visualViewport.height < window.innerHeight * 0.75;
+        updateStickyCta();
+      });
+    }
+  }
+}
+
+// ─── CALENDLY FALLBACK ───
+const calendlyWidget = document.querySelector('.calendly-inline-widget');
+const calendlyFallback = document.getElementById('calendlyFallback');
+
+if (calendlyWidget && calendlyFallback) {
+  setTimeout(() => {
+    if (!calendlyWidget.querySelector('iframe')) {
+      calendlyFallback.style.display = 'block';
+    }
+  }, 5000);
+}
