@@ -85,6 +85,7 @@ if (contactForm && formStatus) {
         formStatus.className = 'form-status form-status--success';
         formStatus.textContent = "Thanks — we've received your enquiry and will reply within 24 hours.";
         contactForm.reset();
+        if (typeof plausible !== 'undefined') plausible('Form Submission');
       } else {
         throw new Error('Submission failed');
       }
@@ -96,6 +97,64 @@ if (contactForm && formStatus) {
       submitBtn.textContent = 'Send Enquiry →';
     }
   });
+}
+
+// ─── EMAIL CAPTURE (resources hub + footer, possibly multiple per page) ───
+document.querySelectorAll('.email-capture-form').forEach((form) => {
+  const status = form.querySelector('.form-status');
+  const emailField = form.elements.email;
+  const submitBtn = form.querySelector('.form-submit');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const emailValue = emailField.value.trim();
+    if (!emailValue || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+      emailField.setAttribute('aria-invalid', 'true');
+      if (status) {
+        status.className = 'form-status form-status--error';
+        status.textContent = 'Enter a valid email address.';
+      }
+      return;
+    }
+    emailField.removeAttribute('aria-invalid');
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    if (status) { status.className = 'form-status'; status.textContent = ''; }
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+
+      if (response.ok) {
+        if (status) {
+          status.className = 'form-status form-status--success';
+          status.textContent = "Thanks — you're on the list.";
+        }
+        form.reset();
+        if (typeof plausible !== 'undefined') plausible('Form Submission');
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (err) {
+      if (status) {
+        status.className = 'form-status form-status--error';
+        status.textContent = 'Something went wrong. Try again, or email hello@locustuition.co.uk directly.';
+      }
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Subscribe';
+    }
+  });
+});
+
+// ─── PLAUSIBLE: BOOKING PAGE VIEW ───
+if (document.querySelector('.calendly-inline-widget') && typeof plausible !== 'undefined') {
+  plausible('Booking Page View');
 }
 
 // ─── FAQ ACCORDION ───

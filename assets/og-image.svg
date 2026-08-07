@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0F2544"/>
+
+  <!-- accent rule -->
+  <rect x="100" y="223" width="64" height="4" rx="2" fill="#0E8A7D"/>
+  <rect x="172" y="223" width="24" height="4" rx="2" fill="#F0A500"/>
+
+  <!-- eyebrow -->
+  <text x="100" y="200" font-family="Georgia, 'Times New Roman', serif" font-size="22" letter-spacing="3" fill="#0E8A7D" font-weight="bold">GCSE &amp; iGCSE ONLINE MATHS TUITION</text>
+
+  <!-- wordmark -->
+  <text x="98" y="320" font-family="Georgia, 'Times New Roman', serif" font-size="88" fill="#FFFFFF">Locus Tuition</text>
+
+  <!-- tagline -->
+  <text x="100" y="390" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#C6D0DC">Maths isn't hard. It's just taught fast.</text>
+
+  <!-- footer strip -->
+  <text x="100" y="560" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#7F8FA6">Years 7&#8211;11 &#183; AQA &#183; Edexcel &#183; Cambridge iGCSE</text>
+  <text x="100" y="595" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#7F8FA6">locustuition.co.uk</text>
+</svg>
