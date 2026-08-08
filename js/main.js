@@ -17,6 +17,81 @@ if (hamburger && mobileMenu) {
   });
 }
 
+// ─── COOKIE CONSENT + GOOGLE ANALYTICS ───
+// GA4 only loads after explicit consent — nothing is set or fetched before
+// the visitor accepts, so no Google Consent Mode plumbing is needed (that's
+// for sites also running ads/remarketing, which this one doesn't).
+const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // replace once the GA4 property exists
+const COOKIE_CONSENT_KEY = 'locusCookieConsent';
+const sitePrefix = location.pathname.includes('/resources/') ? '../' : '';
+
+const loadGoogleAnalytics = () => {
+  if (window.__gaLoaded) return;
+  window.__gaLoaded = true;
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  document.head.appendChild(script);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  window.gtag('config', GA_MEASUREMENT_ID);
+};
+
+const showCookieBanner = () => {
+  if (document.querySelector('.cookie-banner')) return;
+
+  const banner = document.createElement('div');
+  banner.className = 'cookie-banner';
+  banner.innerHTML = `
+    <p class="cookie-banner-text">We use cookies to understand how visitors use this site. See our <a href="${sitePrefix}privacy.html">Privacy Policy</a> for details.</p>
+    <div class="cookie-banner-actions">
+      <button type="button" class="cookie-banner-decline">Decline</button>
+      <button type="button" class="cookie-banner-accept">Accept</button>
+    </div>
+  `;
+  document.body.appendChild(banner);
+  requestAnimationFrame(() => banner.classList.add('visible'));
+
+  const dismiss = () => {
+    banner.classList.remove('visible');
+    setTimeout(() => banner.remove(), 300);
+  };
+
+  banner.querySelector('.cookie-banner-accept').addEventListener('click', () => {
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'granted');
+    dismiss();
+    loadGoogleAnalytics();
+  });
+
+  banner.querySelector('.cookie-banner-decline').addEventListener('click', () => {
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'denied');
+    dismiss();
+  });
+};
+
+const storedConsent = localStorage.getItem(COOKIE_CONSENT_KEY);
+if (storedConsent === 'granted') {
+  loadGoogleAnalytics();
+} else if (storedConsent !== 'denied') {
+  showCookieBanner();
+}
+
+// "Change your mind" link — lets a visitor reopen the banner and switch
+// their choice at any point, on every page (footer is shared site-wide).
+const footerBottom = document.querySelector('.footer-bottom');
+if (footerBottom) {
+  const prefsBtn = document.createElement('button');
+  prefsBtn.type = 'button';
+  prefsBtn.className = 'cookie-preferences-link';
+  prefsBtn.textContent = 'Cookie preferences';
+  prefsBtn.addEventListener('click', () => {
+    localStorage.removeItem(COOKIE_CONSENT_KEY);
+    showCookieBanner();
+  });
+  footerBottom.appendChild(prefsBtn);
+}
+
 // ─── CONTACT FORM ───
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
@@ -89,7 +164,7 @@ if (contactForm && formStatus) {
         formStatus.className = 'form-status form-status--success';
         formStatus.textContent = "Thanks — we've received your enquiry and will reply within 24 hours.";
         contactForm.reset();
-        if (typeof plausible !== 'undefined') plausible('Form Submission');
+        if (window.__gaLoaded) window.gtag('event', 'form_submission');
       } else {
         throw new Error('Submission failed');
       }
@@ -140,7 +215,7 @@ document.querySelectorAll('.email-capture-form').forEach((form) => {
           status.textContent = "Thanks — you're on the list.";
         }
         form.reset();
-        if (typeof plausible !== 'undefined') plausible('Form Submission');
+        if (window.__gaLoaded) window.gtag('event', 'form_submission');
       } else {
         throw new Error('Submission failed');
       }
@@ -157,8 +232,8 @@ document.querySelectorAll('.email-capture-form').forEach((form) => {
 });
 
 // ─── PLAUSIBLE: BOOKING PAGE VIEW ───
-if (document.querySelector('.calendly-inline-widget') && typeof plausible !== 'undefined') {
-  plausible('Booking Page View');
+if (document.querySelector('.calendly-inline-widget') && window.__gaLoaded) {
+  window.gtag('event', 'booking_page_view');
 }
 
 // ─── FAQ ACCORDION ───
