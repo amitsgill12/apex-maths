@@ -266,11 +266,12 @@ if (testimonialTrack && testimonialDots && testimonialPrev && testimonialNext) {
     const maxPage = totalPages() - 1;
     if (page > maxPage) page = maxPage;
 
-    // CSS translateX(%) is relative to the track's own visible border-box,
-    // not its full scrollable content — and since cardsPerView cards are
-    // sized (via flex-basis) to fill exactly 100% of that box, moving one
-    // page is always -100%, regardless of how many cards exist in total.
-    testimonialTrack.style.transform = `translateX(-${page * 100}%)`;
+    // Pixel offset, not translateX(%) — Safari resolves percentage transforms
+    // on a flex container with overflowing children inconsistently (moves by
+    // the full scrollable content width instead of the container's own visible
+    // width). Measuring the viewport's real width sidesteps that entirely.
+    const viewportWidth = testimonialTrack.parentElement.getBoundingClientRect().width;
+    testimonialTrack.style.transform = `translateX(-${page * viewportWidth}px)`;
 
     renderDots();
     testimonialPrev.disabled = page === 0;
