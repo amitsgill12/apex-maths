@@ -24,23 +24,27 @@ const formStatus = document.getElementById('formStatus');
 if (contactForm && formStatus) {
   const requiredFields = ['parentName', 'phone', 'email', 'yearGroup', 'consent'];
 
-  function fieldValue(field) {
+  // Function expressions, not declarations — Safari/JavaScriptCore has a bug
+  // where a `function` declared inside a block at script top level, closing
+  // over a sibling let/const from that same block, throws a ReferenceError
+  // when called later from an async callback (event handler, observer, etc).
+  const fieldValue = (field) => {
     return field.type === 'checkbox' ? field.checked : field.value.trim();
-  }
+  };
 
-  function showFieldError(field, message) {
+  const showFieldError = (field, message) => {
     const errorEl = document.getElementById(field.name + 'Error');
     if (errorEl) errorEl.textContent = message;
     field.setAttribute('aria-invalid', 'true');
-  }
+  };
 
-  function clearFieldError(field) {
+  const clearFieldError = (field) => {
     const errorEl = document.getElementById(field.name + 'Error');
     if (errorEl) errorEl.textContent = '';
     field.removeAttribute('aria-invalid');
-  }
+  };
 
-  function validateForm() {
+  const validateForm = () => {
     let isValid = true;
 
     requiredFields.forEach((name) => {
@@ -62,7 +66,7 @@ if (contactForm && formStatus) {
     }
 
     return isValid;
-  }
+  };
 
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -189,9 +193,10 @@ if (stickyCta) {
     let footerVisible = false;
     let keyboardOpen = false;
 
-    function updateStickyCta() {
+    // Function expression — see note above the contact-form handlers.
+    const updateStickyCta = () => {
       stickyCta.classList.toggle('hidden', footerVisible || keyboardOpen);
-    }
+    };
 
     const footerEl = document.querySelector('footer');
     if (footerEl && 'IntersectionObserver' in window) {
@@ -236,17 +241,18 @@ if (testimonialTrack && testimonialDots && testimonialPrev && testimonialNext) {
   let cardsPerView = 3;
   let page = 0;
 
-  function getCardsPerView() {
+  // Function expressions — see note above the contact-form handlers.
+  const getCardsPerView = () => {
     if (window.innerWidth <= 600) return 1;
     if (window.innerWidth <= 960) return 2;
     return 3;
-  }
+  };
 
-  function totalPages() {
+  const totalPages = () => {
     return Math.ceil(cards.length / cardsPerView);
-  }
+  };
 
-  function renderDots() {
+  const renderDots = () => {
     testimonialDots.innerHTML = '';
     for (let i = 0; i < totalPages(); i++) {
       const dot = document.createElement('button');
@@ -259,24 +265,23 @@ if (testimonialTrack && testimonialDots && testimonialPrev && testimonialNext) {
       });
       testimonialDots.appendChild(dot);
     }
-  }
+  };
 
-  function update() {
+  const update = () => {
     cardsPerView = getCardsPerView();
     const maxPage = totalPages() - 1;
     if (page > maxPage) page = maxPage;
 
-    // Pixel offset, not translateX(%) — Safari resolves percentage transforms
-    // on a flex container with overflowing children inconsistently (moves by
-    // the full scrollable content width instead of the container's own visible
-    // width). Measuring the viewport's real width sidesteps that entirely.
+    // Pixel offset, computed from the actual measured viewport width, rather
+    // than translateX(%) — keeps the slide distance exact regardless of how
+    // the percentage reference box gets resolved.
     const viewportWidth = testimonialTrack.parentElement.getBoundingClientRect().width;
     testimonialTrack.style.transform = `translateX(-${page * viewportWidth}px)`;
 
     renderDots();
     testimonialPrev.disabled = page === 0;
     testimonialNext.disabled = page === maxPage;
-  }
+  };
 
   testimonialPrev.addEventListener('click', () => {
     if (page > 0) { page--; update(); }
