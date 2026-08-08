@@ -848,10 +848,10 @@ button { cursor: pointer; font-family: var(--font-sans); }
 
 /* ─── TESTIMONIAL CAROUSEL ─── */
 .testimonial-carousel { position: relative; padding: 0 48px; margin-bottom: 32px; }
+.testimonial-viewport { overflow: hidden; }
 .testimonial-track {
   display: flex;
   gap: 20px;
-  overflow: hidden;
   transition: transform 0.4s ease;
 }
 .testimonial-track .testimonial-card { flex: 0 0 calc((100% - 40px) / 3); min-width: 0; }
